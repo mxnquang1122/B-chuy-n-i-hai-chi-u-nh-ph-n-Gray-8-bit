@@ -1,0 +1,7 @@
+{
+  "DESIGN_NAME": "tt_um_binary_gray_converter",
+  "VERILOG_FILES": ["dir::tt_um_binary_gray_converter.v"],
+  "CLOCK_PERIOD": 10,
+  "FP_CORE_UTIL": 30,
+  "PDK": "sky130A"
+}
