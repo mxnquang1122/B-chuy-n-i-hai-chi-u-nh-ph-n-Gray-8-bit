@@ -1,0 +1,45 @@
+name: RTL to GDSII
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  MA_DE: B03
+  DESIGN_NAME: tt_um_binary_gray_converter
+  CONFIG: config.json
+
+jobs:
+  simulation:
+    name: RTL simulation
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Icarus Verilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog
+
+      - name: Compile Verilog
+        run: |
+          iverilog -g2012 \
+            -s tb_binary_gray_converter \
+            -o sim.vvp \
+            tt_um_binary_gray_converter.v \
+            tb_binary_gray_converter.v
+
+      - name: Run testbench
+        run: |
+          vvp sim.vvp | tee simulation.log
+          grep -qi "PASS" simulation.log
+
+      - name: Upload simulation log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: simulation-log
+          path: simulation.log
+          if-no-files-found: warn
