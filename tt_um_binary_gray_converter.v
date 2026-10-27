@@ -1,4 +1,4 @@
-```verilog
+
 module tt_um_binary_gray_converter (
     input  wire [7:0] ui_in,
     input  wire [7:0] uio_in,
@@ -42,4 +42,4 @@ module tt_um_binary_gray_converter (
     assign uio_oe  = 8'b00000000;
 
 endmodule
-```
+
