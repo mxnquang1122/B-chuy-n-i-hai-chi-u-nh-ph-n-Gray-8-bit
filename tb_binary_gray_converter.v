@@ -1,4 +1,4 @@
-```verilog
+
 `timescale 1ns/1ps
 
 module tb_binary_gray_converter;
@@ -57,4 +57,4 @@ module tb_binary_gray_converter;
     end
 
 endmodule
-```
+
